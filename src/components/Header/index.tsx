@@ -1,13 +1,13 @@
 import { Input } from "antd";
 const { Search } = Input;
 import type { SearchProps } from "antd/es/input/Search";
-import pinyin from "pinyin";
+import {pinyin} from "pinyin-pro";
 import "./index.less";
 
 const Header = (props) => {
   const { searchFnc } = props;
   const onSearch: SearchProps["onSearch"] = (value, _e, info) => {
-    searchFnc(pinyin(value, { style: "normal" }).join(""));
+    searchFnc(pinyin(value, { toneType: "none" }).replace(/\s*/g, ""))
   };
   return (
     <div className="header">
