@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/Header";
-import WeatherCard from "../../components/WeatherCard";
-import "./index.less";
+import { Input } from "antd";
+import { pinyin } from "pinyin-pro";
+import { memo } from "react";
+import WeatherCard from "@/components/WeatherCard";
 import { getCityInfo, getCityInfoByCityName, getWeatherInfo } from "./services";
+import type { SearchProps } from "antd/es/input/Search";
+const { Search } = Input;
 
-const Home = () => {
-  const [position, setPosition] = useState({
-    latitude: 0,
-    longitude: 0,
-  });
-
+const Home:React.FC = () => {
   const [cityInfo, setCityInfo] = useState({
     city: "",
     district: "",
@@ -26,19 +24,7 @@ const Home = () => {
     obsTime: "",
   });
 
-  function success(position) {
-    setPosition({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    });
-    weatherProcessByGeo(position.coords.latitude, position.coords.longitude);
-  }
-
-  function error() {
-    console.log("Unable to retrieve your location");
-  }
-
-  function weatherProcessByGeo(latitude, longitude) {
+  function weatherProcessByGeo(latitude: number, longitude: number) {
     getCityInfo(latitude, longitude).then((res) => {
       if (res.data.code === "200") {
         setCityInfo({
@@ -57,7 +43,7 @@ const Home = () => {
     });
   }
 
-  function weatherProcessByCity(city) {
+  function weatherProcessByCity(city: string) {
     getCityInfoByCityName(city).then((res) => {
       if (res.data.code === "200") {
         setCityInfo({
@@ -76,8 +62,20 @@ const Home = () => {
     });
   }
 
+  const onSearch: SearchProps["onSearch"] = (value) => {
+    weatherProcessByCity(pinyin(value, { toneType: "none" }).replace(/\s*/g, ""))
+  };
+
   // 获取位置
   useEffect(() => {
+    const success = (position: GeolocationPosition) => {
+      weatherProcessByGeo(position.coords.latitude, position.coords.longitude);
+    }
+  
+    function error() {
+      console.log("Unable to retrieve your location");
+    }
+
     if (!navigator.geolocation) {
       console.log("error");
     } else {
@@ -86,11 +84,18 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home">
-      <Header searchFnc={weatherProcessByCity} />
+    <div className="flex flex-col items-center h-screen bg-homeBackground justify-center">
+      <div className="flex items-center justify-center h-60px pl-30px pr-30px">
+      <Search
+        placeholder="请输入城市名称"
+        allowClear
+        onSearch={onSearch}
+        style={{ width: 304 }}
+      />
+    </div>
       <WeatherCard weatherInfo={weatherInfo} cityInfo={cityInfo} />
     </div>
   );
 };
 
-export default Home;
+export default memo(Home);

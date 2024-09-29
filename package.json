@@ -18,6 +18,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/node": "^22.7.4",
     "@types/pinyin": "^2.10.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -29,6 +30,8 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "less": "^4.2.0",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-windicss": "^1.9.3",
+    "windicss": "^3.5.6"
   }
 }
