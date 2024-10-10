@@ -189,7 +189,7 @@ const Home: React.FC = () => {
           activeKey={activeKey}
         />
         {activeKey === '7days' ? (
-          <div className='flex mt-4 justify-between <md:w-full <md:overflow-auto '>
+          <div className='flex mt-4 justify-between <md:w-full <md:overflow-auto <md:flex-1'>
             {sevenDayData.map((item, index) => {
               return <TempCard item={item} key={index} />;
             })}
