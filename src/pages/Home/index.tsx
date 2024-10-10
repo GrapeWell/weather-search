@@ -137,13 +137,13 @@ const Home: React.FC = () => {
   }, [cityInfo.id, activeKey]);
 
   return (
-    <div className='flex flex-col h-screen items-center bg-homeBackground w-full'>
-      <div className='flex items-center mt-12 w-3xl justify-between '>
+    <div className='flex flex-col h-screen items-center bg-homeBackground w-full <md:p-20px'>
+      <div className='flex items-center mt-12 <md:mt-0 w-3xl <md:w-full justify-between '>
         <div className='flex items-center'>
           <SearchInput onSearch={onSearch} />
         </div>
         <div className='text-xl text-textPrimary'>
-          {dayjs().format('YYYY-MM-DD')}
+          {dayjs().format('YYYY年MM月DD日')}
         </div>
       </div>
       <div className='h-md flex items-center flex-col justify-center'>
@@ -171,9 +171,9 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className='text-xl'>{weatherInfo.text}</div>
+        <div className='text-xl <md:text-2xl'>{weatherInfo.text}</div>
       </div>
-      <div className='flex-1 w-7xl'>
+      <div className='flex-1 w-7xl <md:w-full'>
         <Radio
           radioList={[
             {
@@ -190,7 +190,7 @@ const Home: React.FC = () => {
         />
         <>
           {activeKey === '7days' ? (
-            <div className='flex justify-between mt-4'>
+            <div className='flex justify-between mt-4 <md:overflow-auto <md:flex-col <md:h-sm'>
               {sevenDayData.map((item, index) => {
                 return <TempCard item={item} key={index} />;
               })}

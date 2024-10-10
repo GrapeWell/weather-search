@@ -21,17 +21,21 @@ const TempCard: React.FC<{ item: Item }> = ({ item }) => {
     }, 500);
   }, []);
   return (
-    <div className='book'>
+    <div className='book <md:w-full <md:h-auto'>
       <p>{sentence}</p>
-      <div className='cover'>
-        <div className='text-2xl flex justify-between'>
-          {item.fxDate === dayjs().format('YYYY-MM-DD')
-            ? '今天'
-            : daysOfWeek[dayjs(item.fxDate).day()]}
-          <div className={`qi-${item.iconDay}`} />
+      <div className='cover <md:flex-row <md:justify-between <md:items-center'>
+        <div className='text-2xl flex justify-between <md:text-lg'>
+          {item.fxDate === dayjs().format('YYYY-MM-DD') ? (
+            <span className='mr-1.1rem'>今日</span>
+          ) : (
+            daysOfWeek[dayjs(item.fxDate).day()]
+          )}
+          <div className={`qi-${item.iconDay} <md:ml-2`} />
         </div>
-        <div className='text-xl mt-2'>{dayjs(item.fxDate).format('MM-DD')}</div>
-        <div className='text-xl mt-2'>
+        <div className='text-xl mt-2 <md:mt-0 <md:text-lg'>
+          {dayjs(item.fxDate).format('MM-DD')}
+        </div>
+        <div className='text-xl mt-2 <md:mt-0 <md:text-lg'>
           {item.tempMin}° ~ {item.tempMax}°
         </div>
       </div>
