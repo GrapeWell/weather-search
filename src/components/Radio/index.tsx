@@ -4,7 +4,7 @@ import { Props } from './types';
 
 const Radio: React.FC<Props> = ({ radioList, setActiveKey, activeKey }) => {
   return (
-    <div className='radio-inputs'>
+    <div className='radio-inputs <md:w-full'>
       {radioList.map((radio, index) => (
         <label
           className={cs('radio', {
