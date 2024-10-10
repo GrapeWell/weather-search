@@ -142,7 +142,7 @@ const Home: React.FC = () => {
         <div className='flex items-center'>
           <SearchInput onSearch={onSearch} />
         </div>
-        <div className='text-xl text-textPrimary'>
+        <div className='text-xl text-textPrimary <md:text-sm'>
           {dayjs().format('YYYY年MM月DD日')}
         </div>
       </div>
@@ -157,13 +157,13 @@ const Home: React.FC = () => {
           )}
         </div>
         <div className='flex items-center'>
-          <div className='mr-16'>
+          <div className='mr-16 <md:mr-10'>
             <div className='text-8xl text-textPrimary'>{weatherInfo.temp}°</div>
           </div>
           <div className='text-textSecondary'>
             <div className='mb-2'>
-              <MyIcon type='icon-fengsu' className='text-2xl mr-4' />
-              <span className='text-2xl'>{weatherInfo.windSpeed} mph</span>
+              <MyIcon type='icon-fengsu' className='text-2xl mr-4 :md<mr-1' />
+              <span className='text-2xl '>{weatherInfo.windSpeed} mph</span>
             </div>
             <div>
               <MyIcon type='icon-kongqishidu' className='text-2xl mr-4' />
@@ -173,7 +173,7 @@ const Home: React.FC = () => {
         </div>
         <div className='text-xl <md:text-2xl'>{weatherInfo.text}</div>
       </div>
-      <div className='flex-1 w-7xl <md:w-full'>
+      <div className='flex-1 w-7xl flex flex-col <md:w-full'>
         <Radio
           radioList={[
             {
@@ -188,71 +188,69 @@ const Home: React.FC = () => {
           setActiveKey={setActiveKey}
           activeKey={activeKey}
         />
-        <>
-          {activeKey === '7days' ? (
-            <div className='flex justify-between mt-4 <md:overflow-auto <md:flex-col <md:h-sm'>
-              {sevenDayData.map((item, index) => {
-                return <TempCard item={item} key={index} />;
-              })}
-            </div>
-          ) : (
-            <div className='w-full'>
-              <ReactECharts
-                option={{
-                  xAxis: {
-                    type: 'category',
+        {activeKey === '7days' ? (
+          <div className='flex mt-4 justify-between <md:w-full <md:overflow-auto '>
+            {sevenDayData.map((item, index) => {
+              return <TempCard item={item} key={index} />;
+            })}
+          </div>
+        ) : (
+          <div className='w-full'>
+            <ReactECharts
+              option={{
+                xAxis: {
+                  type: 'category',
+                  data: hourlyData.map((item) => {
+                    return dayjs(item.fxTime).format('HH:mm');
+                  }),
+                },
+                tooltip: {
+                  trigger: 'axis',
+                },
+                legend: {
+                  data: ['温度', '降雨率'],
+                },
+                yAxis: [
+                  {
+                    type: 'value',
+                    name: '温度',
+                    position: 'left',
+                    axisLabel: {
+                      formatter: '{value}',
+                    },
+                  },
+                  {
+                    type: 'value',
+                    name: '降雨率',
+                    position: 'right',
+                    axisLabel: {
+                      formatter: '{value}',
+                    },
+                  },
+                ],
+                series: [
+                  {
                     data: hourlyData.map((item) => {
-                      return dayjs(item.fxTime).format('HH:mm');
+                      return item.temp;
                     }),
+                    type: 'line',
+                    smooth: true,
+                    name: '温度',
                   },
-                  tooltip: {
-                    trigger: 'axis',
+                  {
+                    data: hourlyData.map((item) => {
+                      return item.pop;
+                    }),
+                    type: 'line',
+                    smooth: true,
+                    name: '降雨率',
+                    yAxisIndex: 1,
                   },
-                  legend: {
-                    data: ['温度', '降雨率'],
-                  },
-                  yAxis: [
-                    {
-                      type: 'value',
-                      name: '温度',
-                      position: 'left',
-                      axisLabel: {
-                        formatter: '{value}',
-                      },
-                    },
-                    {
-                      type: 'value',
-                      name: '降雨率',
-                      position: 'right',
-                      axisLabel: {
-                        formatter: '{value}',
-                      },
-                    },
-                  ],
-                  series: [
-                    {
-                      data: hourlyData.map((item) => {
-                        return item.temp;
-                      }),
-                      type: 'line',
-                      smooth: true,
-                      name: '温度',
-                    },
-                    {
-                      data: hourlyData.map((item) => {
-                        return item.pop;
-                      }),
-                      type: 'line',
-                      smooth: true,
-                      name: '降雨率',
-                      yAxisIndex: 1,
-                    },
-                  ],
-                }}
-              />
-            </div>
-          )}
-        </>
+                ],
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
