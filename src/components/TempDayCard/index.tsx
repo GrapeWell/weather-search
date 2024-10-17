@@ -13,7 +13,7 @@ const daysOfWeek = [
 
 const TempCard: React.FC<{ item: Item }> = ({ item }) => {
   return (
-    <div className='cover <md:mr-4 <md:last:mr-0 <md:p-1 <md:flex-shrink-0 shadow-md <md:h-8rem'>
+    <div className='temp-day-card mr-4 last:mr-0 <md:p-1 <md:flex-shrink-0 shadow-gray-200 shadow-md <md:h-8rem bg-base text-base'>
       <div className='text-2xl flex justify-between <md:text-lg'>
         {item.fxDate === dayjs().format('YYYY-MM-DD')
           ? '今日'

@@ -13,9 +13,9 @@ import SearchInput from '@/components/SearchInput';
 import dayjs from 'dayjs';
 import MyIcon from '@/components/IconFont';
 import Radio from '@/components/Radio';
-import TempCard from '@/components/TempCard';
-import ReactECharts from 'echarts-for-react';
+import TempDayCard from '@/components/TempDayCard';
 import { HourlyDataItem } from './types';
+import TempHourCard from '@/components/TempHourCard';
 
 const Home: React.FC = () => {
   const [cityInfo, setCityInfo] = useState({
@@ -137,30 +137,28 @@ const Home: React.FC = () => {
   }, [cityInfo.id, activeKey]);
 
   return (
-    <div className='flex flex-col h-screen items-center bg-homeBackground w-full <md:p-20px'>
+    <div className='flex flex-col h-screen items-center bg-base w-full <md:p-20px'>
       <div className='flex items-center mt-12 <md:mt-0 w-3xl <md:w-full justify-between '>
         <div className='flex items-center'>
           <SearchInput onSearch={onSearch} />
         </div>
-        <div className='text-xl text-textPrimary <md:text-sm'>
+        <div className='text-xl text-primary <md:text-sm'>
           {dayjs().format('YYYY年MM月DD日')}
         </div>
       </div>
       <div className='h-md flex items-center flex-col justify-center'>
         <div className='mb-16'>
-          <span className='text-xl text-textPrimary mr-4'>{cityInfo.city}</span>
-          <span className='text-xl text-textPrimary mr-4'>
-            {cityInfo.district}
-          </span>
+          <span className='text-xl text-primary mr-4'>{cityInfo.city}</span>
+          <span className='text-xl text-primary mr-4'>{cityInfo.district}</span>
           {cityInfo.district !== cityInfo.name && (
-            <span className='text-xl text-textPrimary'>{cityInfo.name}</span>
+            <span className='text-xl text-primary'>{cityInfo.name}</span>
           )}
         </div>
         <div className='flex items-center'>
           <div className='mr-16 <md:mr-10'>
-            <div className='text-8xl text-textPrimary'>{weatherInfo.temp}°</div>
+            <div className='text-8xl text-primary'>{weatherInfo.temp}°</div>
           </div>
-          <div className='text-textSecondary'>
+          <div className='text-secondary'>
             <div className='mb-2'>
               <MyIcon type='icon-fengsu' className='text-2xl mr-4 :md<mr-1' />
               <span className='text-2xl '>{weatherInfo.windSpeed} mph</span>
@@ -171,7 +169,9 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className='text-xl <md:text-2xl'>{weatherInfo.text}</div>
+        <div className='text-xl <md:text-2xl text-primary'>
+          {weatherInfo.text}
+        </div>
       </div>
       <div className='flex-1 w-7xl flex flex-col <md:w-full'>
         <Radio
@@ -191,64 +191,14 @@ const Home: React.FC = () => {
         {activeKey === '7days' ? (
           <div className='flex mt-4 justify-between <md:w-full <md:overflow-auto <md:flex-1'>
             {sevenDayData.map((item, index) => {
-              return <TempCard item={item} key={index} />;
+              return <TempDayCard item={item} key={index} />;
             })}
           </div>
         ) : (
-          <div className='w-full'>
-            <ReactECharts
-              option={{
-                xAxis: {
-                  type: 'category',
-                  data: hourlyData.map((item) => {
-                    return dayjs(item.fxTime).format('HH:mm');
-                  }),
-                },
-                tooltip: {
-                  trigger: 'axis',
-                },
-                legend: {
-                  data: ['温度', '降雨率'],
-                },
-                yAxis: [
-                  {
-                    type: 'value',
-                    name: '温度',
-                    position: 'left',
-                    axisLabel: {
-                      formatter: '{value}',
-                    },
-                  },
-                  {
-                    type: 'value',
-                    name: '降雨率',
-                    position: 'right',
-                    axisLabel: {
-                      formatter: '{value}',
-                    },
-                  },
-                ],
-                series: [
-                  {
-                    data: hourlyData.map((item) => {
-                      return item.temp;
-                    }),
-                    type: 'line',
-                    smooth: true,
-                    name: '温度',
-                  },
-                  {
-                    data: hourlyData.map((item) => {
-                      return item.pop;
-                    }),
-                    type: 'line',
-                    smooth: true,
-                    name: '降雨率',
-                    yAxisIndex: 1,
-                  },
-                ],
-              }}
-            />
+          <div className='<md:overflow-auto flex mt-4 justify-between overflow-auto'>
+            {hourlyData.map((item, index) => {
+              return <TempHourCard item={item} key={index} />;
+            })}
           </div>
         )}
       </div>
