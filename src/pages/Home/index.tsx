@@ -142,9 +142,6 @@ const Home: React.FC = () => {
         <div className='flex items-center'>
           <SearchInput onSearch={onSearch} />
         </div>
-        <div className='text-xl text-primary <md:text-sm'>
-          {dayjs().format('YYYY年MM月DD日')}
-        </div>
       </div>
       <div className='h-md flex items-center flex-col justify-center'>
         <div className='mb-16'>
@@ -195,7 +192,7 @@ const Home: React.FC = () => {
             })}
           </div>
         ) : (
-          <div className='<md:overflow-auto flex mt-4 justify-between overflow-auto'>
+          <div className='<md:overflow-auto flex mt-4 justify-between overflow-auto <md:flex-1'>
             {hourlyData.map((item, index) => {
               return <TempHourCard item={item} key={index} />;
             })}
