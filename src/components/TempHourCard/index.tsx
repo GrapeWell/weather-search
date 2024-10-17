@@ -4,7 +4,7 @@ import './index.less';
 
 const TempHourCard: React.FC = ({ item }) => {
   return (
-    <div className='temp-hour-card mr-4 last:mr-0 <md:p-1 <md:flex-shrink-0 shadow-md <md:h-8rem items-center'>
+    <div className='temp-hour-card mr-4 last:mr-0 <md:flex-shrink-0 shadow-md <md:h-8rem items-center'>
       <div className='text-xl <md:text-lg'>
         {dayjs(item.fxTime).format('HH:mm')}
       </div>
