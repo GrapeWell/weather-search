@@ -10,7 +10,6 @@ import {
 } from './services';
 import type { SearchProps } from 'antd/es/input/Search';
 import SearchInput from '@/components/SearchInput';
-import dayjs from 'dayjs';
 import MyIcon from '@/components/IconFont';
 import Radio from '@/components/Radio';
 import TempDayCard from '@/components/TempDayCard';

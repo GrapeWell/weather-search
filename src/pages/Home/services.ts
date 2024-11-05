@@ -27,6 +27,7 @@ export const get7DayForecast = async (locationId: string) => {
   );
 };
 
+// 获取24小时预报
 export const get24HoursForecast = async (locationId: string) => {
   return await axios.get(
     `https://devapi.qweather.com/v7/weather/24h?location=${locationId}&key=cdc2853484e341e0a1efb073503129a4`,
