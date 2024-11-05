@@ -2,7 +2,15 @@ import dayjs from 'dayjs';
 import React from 'react';
 import './index.less';
 
-const TempHourCard: React.FC = ({ item }) => {
+interface Props {
+  item: {
+    fxTime: string;
+    icon?: string;
+    temp: number;
+  };
+}
+
+const TempHourCard: React.FC<Props> = ({ item }) => {
   return (
     <div className='temp-hour-card mr-4 last:mr-0 <md:flex-shrink-0 shadow-md <md:h-8rem items-center'>
       <div className='text-xl <md:text-lg'>
