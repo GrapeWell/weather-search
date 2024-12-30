@@ -33,3 +33,9 @@ export const get24HoursForecast = async (locationId: string) => {
     `https://devapi.qweather.com/v7/weather/24h?location=${locationId}&key=cdc2853484e341e0a1efb073503129a4`,
   );
 };
+
+export const getLifeIndex = async (locationId: string) => {
+  return await axios.get(
+    `https://devapi.qweather.com/v7/indices/1d?location=${locationId}&key=cdc2853484e341e0a1efb073503129a4&type=1,2,3,5`,
+  );
+};
