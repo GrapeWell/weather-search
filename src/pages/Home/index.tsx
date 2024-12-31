@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { pinyin } from 'pinyin-pro';
 import { memo } from 'react';
 import {
   get24HoursForecast,
@@ -102,9 +101,7 @@ const Home: React.FC = () => {
 
   const onSearch: SearchProps['onSearch'] = (value) => {
     if (!value.trim()) return;
-    weatherProcessByCity(
-      pinyin(value, { toneType: 'none' }).replace(/\s*/g, ''),
-    );
+    weatherProcessByCity(value);
   };
 
   useEffect(() => {
@@ -157,7 +154,7 @@ const Home: React.FC = () => {
       try {
         const [sevenDayRes, hourlyRes] = await Promise.all([
           get7DayForecast(cityInfo.id),
-          get24HoursForecast(cityInfo.id)
+          get24HoursForecast(cityInfo.id),
         ]);
 
         if (sevenDayRes.data.code === '200') {
