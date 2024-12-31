@@ -155,16 +155,16 @@ const Home: React.FC = () => {
 
     const fetchForecast = async () => {
       try {
-        const forecastRes = await (activeKey === '7days'
-          ? get7DayForecast(cityInfo.id)
-          : get24HoursForecast(cityInfo.id));
+        const [sevenDayRes, hourlyRes] = await Promise.all([
+          get7DayForecast(cityInfo.id),
+          get24HoursForecast(cityInfo.id)
+        ]);
 
-        if (forecastRes.data.code === '200') {
-          if (activeKey === '7days') {
-            setSevenDayData(forecastRes.data.daily);
-          } else {
-            setHourlyData(forecastRes.data.hourly);
-          }
+        if (sevenDayRes.data.code === '200') {
+          setSevenDayData(sevenDayRes.data.daily);
+        }
+        if (hourlyRes.data.code === '200') {
+          setHourlyData(hourlyRes.data.hourly);
         }
       } catch (error) {
         console.error('获取预报数据失败:', error);
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
     };
 
     fetchForecast();
-  }, [activeKey, cityInfo.id]);
+  }, [cityInfo.id]);
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-blue-50 to-white'>

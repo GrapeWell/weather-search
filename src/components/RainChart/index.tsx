@@ -17,42 +17,85 @@ interface Props {
 }
 
 const RainChart: React.FC<Props> = ({ data }) => {
-  const formattedData = data.map(item => ({
+  if (!data?.length) {
+    return (
+      <div className='bg-white rounded-2xl p-4 md:p-6 shadow-lg h-full flex flex-col'>
+        <h3 className='text-lg font-medium text-blue-600 mb-4 md:mb-6 flex items-center gap-2'>
+          <IoUmbrellaOutline className='text-xl' />
+          降雨概率
+        </h3>
+        <div className='flex-1 flex items-center justify-center text-gray-500 text-center'>
+          <div>
+            <p className='mb-2'>☔️</p>
+            <p>切换到24小时预报查看降雨概率</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const formattedData = data.map((item) => ({
     ...item,
     time: dayjs(item.fxTime).format('HH:mm'),
   }));
 
   return (
-    <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg h-full flex flex-col">
-      <h3 className="text-lg font-medium text-blue-600 mb-4 md:mb-6 flex items-center gap-2">
-        <IoUmbrellaOutline className="text-xl" />
-        降雨概率
+    <div className='bg-white rounded-2xl p-4 md:p-6 shadow-lg h-full flex flex-col'>
+      <h3 className='text-lg font-medium text-blue-600 mb-4 md:mb-6 flex items-center gap-2'>
+        <IoUmbrellaOutline className='text-xl' />
+        24小时降雨概率
       </h3>
-      <div className="flex-1">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className='flex-1'>
+        <ResponsiveContainer width='100%' aspect={6}>
           <LineChart data={formattedData}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <defs>
+              <linearGradient id="rainGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="#e5e7eb"
+              vertical={false}
+            />
             <XAxis
               dataKey="time"
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 12, fill: '#6b7280' }}
               interval={2}
+              axisLine={{ stroke: '#e5e7eb' }}
+              tickLine={{ stroke: '#e5e7eb' }}
             />
             <YAxis
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 12, fill: '#6b7280' }}
               unit="%"
               domain={[0, 100]}
+              axisLine={{ stroke: '#e5e7eb' }}
+              tickLine={{ stroke: '#e5e7eb' }}
             />
             <Tooltip
               formatter={(value: number) => [`${value}%`, '降雨概率']}
               labelFormatter={(label) => `时间: ${label}`}
+              contentStyle={{
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                border: '1px solid #e5e7eb',
+                borderRadius: '6px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+              }}
             />
             <Line
               type="monotone"
               dataKey="pop"
               stroke="#3b82f6"
-              strokeWidth={2}
-              dot={{ fill: '#3b82f6', r: 4 }}
-              activeDot={{ r: 6 }}
+              strokeWidth={2.5}
+              dot={false}
+              activeDot={{
+                r: 6,
+                fill: '#3b82f6',
+                stroke: '#fff',
+                strokeWidth: 2,
+              }}
+              fill="url(#rainGradient)"
             />
           </LineChart>
         </ResponsiveContainer>
