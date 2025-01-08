@@ -18,12 +18,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://129.28.95.21',
-        changeOrigin: true,
-      },
-    },
-  },
 });
