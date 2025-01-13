@@ -16,7 +16,6 @@
     "dayjs": "^1.11.11",
     "echarts": "^5.5.1",
     "framer-motion": "^11.15.0",
-    "jinrishici-ts": "^1.0.3",
     "lodash": "^4.17.21",
     "pinyin-pro": "^3.25.0",
     "qweather-icons": "^1.6.0",
