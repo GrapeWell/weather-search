@@ -25,17 +25,10 @@ jobs:
           cmd: build
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.0.8
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
-          REMOTE_PORT: '22'
-          SOURCE: './dist/'
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
-          TARGET: /var/www/html
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           REMOTE_PORT: '22'
-          SOURCE: './dist/'
+          SOURCE: './build/'
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
           TARGET: /var/www/html
