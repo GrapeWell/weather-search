@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
       - uses: actions/checkout@v3
       - name: Set Node.js 18.x
         uses: actions/setup-node@v3
@@ -23,11 +24,12 @@ jobs:
         with:
           cmd: build
       - name: Deploy to Server
-        uses: AEnterprise/rsync-deploy@v1.0
+        uses: easingthemes/ssh-deploy@v2.0.8
         env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          SERVER_PORT: '22'
-          FOLDER: ./dist/*
-          SERVER_IP: ${{ secrets.SSH_HOST }}
-          USERNAME: ${{ secrets.SSH_USERNAME }}
-          SERVER_DESTINATION: /var/www/html
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        with:
+          port: '22'
+          local: './dist/'
+          server: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          remote: /var/www/html
