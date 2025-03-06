@@ -24,12 +24,11 @@ jobs:
         with:
           cmd: build
       - name: Deploy to Server
-        uses: AEnterprise/rsync-deploy@v1.0
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          SERVER_PORT: '22'
-          FOLDER: ./dist/*
-          SERVER_IP: ${{ secrets.SSH_HOST }}
-          USERNAME: ${{ secrets.SSH_USERNAME }}
-          SERVER_DESTINATION: /var/www/html
+        uses: easingthemes/ssh-deploy@v2.0.8
+        with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          REMOTE_PORT: '22'
+          SOURCE: './dist/'
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          TARGET: /var/www/html
