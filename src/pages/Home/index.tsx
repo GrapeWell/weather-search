@@ -28,6 +28,7 @@ const HOT_CITIES = [
   '南京',
   '成都',
   '重庆',
+  '西安',
 ];
 
 const Home: React.FC = () => {
