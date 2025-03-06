@@ -24,11 +24,15 @@ jobs:
         with:
           cmd: build
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.0.8
+        uses: easingthemes/ssh-deploy@v2.1.0
         env:
+          ARGS: -avz --delete
+
+        with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           REMOTE_PORT: '22'
           SOURCE: 'dist'
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
           TARGET: /var/www/html
+          DEBUG: true
