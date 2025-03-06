@@ -24,9 +24,8 @@ jobs:
         with:
           cmd: build
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.1.0
+        uses: easingthemes/ssh-deploy@v5.1.0
         env:
-          ARGS: -avz --delete
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           REMOTE_PORT: '22'
           SOURCE: 'dist'
