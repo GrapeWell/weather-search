@@ -24,12 +24,17 @@ jobs:
         with:
           cmd: build
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: '-rlgoDzvc -i --delete'
-          REMOTE_PORT: '22'
-          SOURCE: 'dist/'
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
-          TARGET: /var/www/html
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          # 禁用主机密钥验证（首次连接自动接受）
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" > ~/.ssh/config
+
+          # 使用 rsync 同步文件（带删除参数）
+          rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT || '22' }}" \
+          ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/html/
+
+          # 清理私钥
+          rm -f ~/.ssh/id_rsa
