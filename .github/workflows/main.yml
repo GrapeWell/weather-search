@@ -28,9 +28,9 @@ jobs:
         env:
           ARGS: -avz --delete
         with:
-          SSH_PRIVATE_KEY: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpeNS3E8k+XYzsv/b0XSlGLiUknsF9WhwAsKGZEJ0SuDIdg7jUtJ2tbDc95LE4tye/Z6nWd6ESzZMBxfsOv3EKPe9F4iB8lg8bN87FjmjFq8vbHZwIrEWFbxQ3bWG0LIicXBhF2p8pH00GY6RZLU0676eug6CgKEhreKoQPKNqzdLtYO5NS559ba65Ree32Y9oSa6UkfdlOwDakkwjFdfZr0N0v5NN5QeJXcA2WQfc3W4/ct7lziBahEymvJ/UNeZ7vTYLByjxPoaT2qno+xfB5tu+IFzcaPxhCmTM9TVpgTYTVSmWMtkF7m9ankd5vr6eM+q64tRfFIWxd0QgMqUj skey-jeb9m9cl'
+          SSH_PRIVATE_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpeNS3E8k+XYzsv/b0XSlGLiUknsF9WhwAsKGZEJ0SuDIdg7jUtJ2tbDc95LE4tye/Z6nWd6ESzZMBxfsOv3EKPe9F4iB8lg8bN87FjmjFq8vbHZwIrEWFbxQ3bWG0LIicXBhF2p8pH00GY6RZLU0676eug6CgKEhreKoQPKNqzdLtYO5NS559ba65Ree32Y9oSa6UkfdlOwDakkwjFdfZr0N0v5NN5QeJXcA2WQfc3W4/ct7lziBahEymvJ/UNeZ7vTYLByjxPoaT2qno+xfB5tu+IFzcaPxhCmTM9TVpgTYTVSmWMtkF7m9ankd5vr6eM+q64tRfFIWxd0QgMqUj skey-jeb9m9cl
           REMOTE_PORT: '22'
           SOURCE: 'dist'
-          REMOTE_HOST: '129.28.95.21'
-          REMOTE_USER: 'ubuntu'
+          REMOTE_HOST: 129.28.95.21
+          REMOTE_USER: ubuntu
           TARGET: /var/www/html
