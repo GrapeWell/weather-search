@@ -4,18 +4,24 @@ on:
   push:
     branches:
       - main # 只在master上push触发部署
-    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
-      - README.md
 
 jobs:
-  build-production:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
       - name: Install dependencies
-        run: yarn install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
       - name: Build
-        run: yarn build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
       - name: Deploy to Server
         uses: AEnterprise/rsync-deploy@v1.0
         env:
