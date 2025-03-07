@@ -28,7 +28,7 @@ jobs:
         with:
           switches: -avzr --delete
           path: dist/
-          remote_path: /home/frontend/
+          remote_path: /home/frontend/weather-search
           remote_host: ${{ secrets.SSH_HOST }}
           remote_user: ${{ secrets.SSH_USERNAME }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
