@@ -1482,7 +1482,7 @@ fast-equals@^5.0.1:
   resolved "https://registry.npmmirror.com/fast-equals/-/fast-equals-5.0.1.tgz#a4eefe3c5d1c0d021aeed0bc10ba5e0c12ee405d"
   integrity sha512-WF1Wi8PwwSY7/6Kx0vKXtw8RwuSGoM1bvDaJbu7MxDlR1vovZjIAKrnzyrThgAjm6JDTu0fVgWXDlMGspodfoQ==
 
-fast-glob@^3.2.12, fast-glob@^3.2.9, fast-glob@^3.3.2:
+fast-glob@^3.2.12, fast-glob@^3.2.9:
   version "3.3.2"
   resolved "https://registry.npmmirror.com/fast-glob/-/fast-glob-3.3.2.tgz"
   integrity sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==
@@ -1733,11 +1733,6 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/isexe/-/isexe-2.0.0.tgz"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
-
-jinrishici-ts@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmmirror.com/jinrishici-ts/-/jinrishici-ts-1.0.3.tgz#6645da1674f35c83cefa56f6ad1a4d6e66c9458f"
-  integrity sha512-kaB1DdcQIypH1EXOSYrZ38OFfajfDzrSMTJWq6xIU1oN0pgW5zPSwK4I6LdnWa32lqH8LhHIdoY/RxAaMq1+Ow==
 
 jiti@^1.18.2:
   version "1.21.6"
@@ -2796,13 +2791,6 @@ victory-vendor@^36.6.8:
     d3-shape "^3.1.0"
     d3-time "^3.0.0"
     d3-timer "^3.0.1"
-
-vite-plugin-unused-files@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmmirror.com/vite-plugin-unused-files/-/vite-plugin-unused-files-0.0.2.tgz#6ee6a8849292413c103f9742dd8743b7f89df0b9"
-  integrity sha512-XGMgtl4vJoEWcdPEuNtDrJUrJ9wY0Pbs+II4hRulc0+ocV6iBRONPBxvyrwzSra2nbzmVwZAThCyfv7JtXT3Qg==
-  dependencies:
-    fast-glob "^3.3.2"
 
 vite-plugin-windicss@^1.9.3:
   version "1.9.3"

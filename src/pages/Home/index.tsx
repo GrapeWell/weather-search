@@ -63,12 +63,12 @@ const Home: React.FC = () => {
   const weatherProcessByGeo = (latitude: number, longitude: number) => {
     getCityInfo(latitude, longitude)
       .then((res) => {
-        if (res.data.code === '200') {
-          const locationId = res.data.location[0].id;
+        if (res.code === 200) {
+          const locationId = res.data.id;
           setCityInfo({
-            city: res.data.location[0].adm1,
-            district: res.data.location[0].adm2,
-            name: res.data.location[0].name,
+            city: res.data.adm1,
+            district: res.data.adm2,
+            name: res.data.name,
             id: locationId,
           });
         } else {
@@ -83,12 +83,12 @@ const Home: React.FC = () => {
   const weatherProcessByCity = (city: string) => {
     getCityInfoByCityName(city)
       .then((res) => {
-        if (res.data.code === '200') {
-          const locationId = res.data.location[0].id;
+        if (res.code === 200) {
+          const locationId = res.data.id;
           setCityInfo({
-            city: res.data.location[0].adm1,
-            district: res.data.location[0].adm2,
-            name: res.data.location[0].name,
+            city: res.data.adm1,
+            district: res.data.adm2,
+            name: res.data.name,
             id: locationId,
           });
         } else {
@@ -134,11 +134,11 @@ const Home: React.FC = () => {
           getLifeIndex(cityInfo.id),
         ]);
 
-        if (weatherRes.data.code === '200') {
-          setWeatherInfo(weatherRes.data.now);
+        if (weatherRes.code === 200) {
+          setWeatherInfo(weatherRes.data as WeatherInfo);
         }
-        if (lifeIndexRes.data.code === '200') {
-          setLifeIndex(lifeIndexRes.data.daily);
+        if (lifeIndexRes.code === 200) {
+          setLifeIndex(lifeIndexRes.data as LifeIndexItem[]);
         }
       } catch (error) {
         console.error('获取天气信息失败:', error);
@@ -158,11 +158,11 @@ const Home: React.FC = () => {
           get24HoursForecast(cityInfo.id),
         ]);
 
-        if (sevenDayRes.data.code === '200') {
-          setSevenDayData(sevenDayRes.data.daily);
+        if (sevenDayRes.code === 200) {
+          setSevenDayData(sevenDayRes.data as []);
         }
-        if (hourlyRes.data.code === '200') {
-          setHourlyData(hourlyRes.data.hourly);
+        if (hourlyRes.code === 200) {
+          setHourlyData(hourlyRes.data as HourlyDataItem[]);
         }
       } catch (error) {
         console.error('获取预报数据失败:', error);
