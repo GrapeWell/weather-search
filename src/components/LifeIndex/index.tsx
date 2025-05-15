@@ -9,6 +9,7 @@ import {
   IoThermometerOutline,
   IoWaterOutline,
 } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 
 interface LifeIndexItem {
   type: string;
@@ -21,6 +22,7 @@ interface Props {
 }
 
 const LifeIndex: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation();
   const getLifeIndexIcon = (type: string) => {
     const icons = {
       '1': <IoThermometerOutline className='text-2xl' />, // 运动指数
@@ -32,34 +34,41 @@ const LifeIndex: React.FC<Props> = ({ data }) => {
       '7': <IoWaterOutline className='text-2xl' />, // 过敏指数
       '8': <IoSpeedometerOutline className='text-2xl' />, // 舒适度指数
     };
-    return icons[type as keyof typeof icons] || <IoSpeedometerOutline className='text-2xl' />;
+    return (
+      icons[type as keyof typeof icons] || (
+        <IoSpeedometerOutline className='text-2xl' />
+      )
+    );
   };
 
   return (
     <div className='bg-white rounded-2xl p-4 md:p-6 shadow-lg h-full'>
       <h3 className='text-lg font-medium text-blue-600 mb-4 md:mb-6 flex items-center gap-2'>
         <IoSpeedometerOutline className='text-xl' />
-        生活指数
+        {t('生活指数')}
       </h3>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {data && data.length > 0 ? (
           data.map((item, index) => (
             <div
               key={index}
-              className='bg-gradient-to-br from-blue-50 to-white p-4 rounded-xl border border-blue-100 hover:shadow-md transition-shadow'
-            >
+              className='bg-gradient-to-br from-blue-50 to-white p-4 rounded-xl border border-blue-100 hover:shadow-md transition-shadow'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-3'>
-                  <span className='text-blue-500'>{getLifeIndexIcon(item.type)}</span>
-                  <span className='text-gray-700 font-medium'>{item.name}</span>
+                  <span className='text-blue-500 pt-2'>
+                    {getLifeIndexIcon(item.type)}
+                  </span>
+                  <span className='text-gray-700 font-medium'>
+                    {t(item.name)}
+                  </span>
                 </div>
-                <span className='text-blue-600'>{item.category}</span>
+                <span className='text-blue-600'>{t(item.category)}</span>
               </div>
             </div>
           ))
         ) : (
           <div className='col-span-2 text-center py-8 text-gray-500'>
-            暂无生活指数数据
+            {t('暂无生活指数数据')}
           </div>
         )}
       </div>

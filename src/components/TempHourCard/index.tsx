@@ -2,18 +2,20 @@ import React from 'react';
 import { HourlyDataItem } from '@/pages/Home/types';
 import dayjs from 'dayjs';
 import { WiRaindrops } from 'react-icons/wi';
-import './index.less';
+import './index.css';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   data?: HourlyDataItem;
 }
 
 const TempHourCard: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation();
   if (!data) {
     return (
       <div className='w-24 p-3 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-blue-100 text-center text-gray-500'>
-        暂无数据
+        {t('暂无数据')}
       </div>
     );
   }

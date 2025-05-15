@@ -8,7 +8,6 @@ import {
   getWeatherInfo,
   getLifeIndex,
 } from './services';
-import type { SearchProps } from 'antd/es/input/Search';
 import SearchInput from '@/components/SearchInput';
 import Radio from '@/components/Radio';
 import TempDayCard from '@/components/TempDayCard';
@@ -18,20 +17,22 @@ import { motion } from 'framer-motion';
 import LifeIndex from '@/components/LifeIndex';
 import WeatherDetails from '@/components/WeatherDetails';
 import RainChart from '@/components/RainChart';
-
-const HOT_CITIES = [
-  '北京',
-  '上海',
-  '广州',
-  '深圳',
-  '杭州',
-  '南京',
-  '成都',
-  '重庆',
-  '西安',
-];
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
+  const HOT_CITIES = [
+    t('北京'),
+    t('上海'),
+    t('广州'),
+    t('深圳'),
+    t('杭州'),
+    t('南京'),
+    t('成都'),
+    t('重庆'),
+    t('西安'),
+  ];
   const [cityInfo, setCityInfo] = useState({
     city: '',
     district: '',
@@ -100,7 +101,7 @@ const Home: React.FC = () => {
       });
   };
 
-  const onSearch: SearchProps['onSearch'] = (value) => {
+  const onSearch = (value: string) => {
     if (!value.trim()) return;
     weatherProcessByCity(value);
   };
@@ -182,20 +183,19 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className='bg-white rounded-xl p-6 shadow-lg mb-4'>
+              {/* <LanguageSwitcher /> */}
               <div className='flex items-center justify-between mb-6'>
                 <SearchInput onSearch={onSearch} />
               </div>
-              <div>
-                <div className='flex flex-wrap gap-2'>
-                  {HOT_CITIES.map((city) => (
-                    <button
-                      key={city}
-                      onClick={() => weatherProcessByCity(city)}
-                      className='px-2 py-1 text-sm bg-blue-50 hover:bg-blue-100 rounded transition-colors'>
-                      {city}
-                    </button>
-                  ))}
-                </div>
+              <div className='flex flex-wrap gap-2 max-h-[80px] overflow-y-auto'>
+                {HOT_CITIES.map((city) => (
+                  <button
+                    key={city}
+                    onClick={() => weatherProcessByCity(city)}
+                    className='px-2 py-1 text-sm bg-blue-50 hover:bg-blue-100 rounded transition-colors'>
+                    {city}
+                  </button>
+                ))}
               </div>
             </motion.div>
 
@@ -218,7 +218,7 @@ const Home: React.FC = () => {
                 <div className='ml-6'>
                   <p className='text-xl text-gray-600'>{weatherInfo.text}</p>
                   <p className='text-sm text-gray-500 mt-1'>
-                    体感温度 {weatherInfo.feelsLike}°
+                    {t('体感温度')} {weatherInfo.feelsLike}°
                   </p>
                 </div>
               </div>
@@ -234,8 +234,8 @@ const Home: React.FC = () => {
               className='bg-white rounded-xl p-6 shadow-lg mb-4'>
               <Radio
                 radioList={[
-                  { name: '近7天', key: '7days' },
-                  { name: '近24小时', key: '7hours' },
+                  { name: t('近7天'), key: '7days' },
+                  { name: t('近24小时'), key: '7hours' },
                 ]}
                 setActiveKey={setActiveKey}
                 activeKey={activeKey}
@@ -250,7 +250,7 @@ const Home: React.FC = () => {
                     </div>
                   ) : (
                     <div className='bg-gradient-to-br from-blue-50 to-white p-4 rounded-lg text-center text-gray-500'>
-                      暂无天气预报数据
+                      {t('暂无天气预报数据')}
                     </div>
                   )
                 ) : hourlyData.length > 0 ? (
@@ -261,7 +261,7 @@ const Home: React.FC = () => {
                   </div>
                 ) : (
                   <div className='bg-gradient-to-br from-blue-50 to-white p-4 rounded-lg text-center text-gray-500'>
-                    暂无逐小时天气数据
+                    {t('暂无逐小时天气数据')}
                   </div>
                 )}
               </div>

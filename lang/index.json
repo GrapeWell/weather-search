@@ -1,0 +1,157 @@
+{
+	"ekc52": {
+		"zh-cn": "北京",
+		"en": "Beijing",
+		"ja": "北京です"
+	},
+	"dvhp2": {
+		"zh-cn": "上海",
+		"en": "Shanghai",
+		"ja": "上海です"
+	},
+	"gl6n2": {
+		"zh-cn": "广州",
+		"en": "Guangzhou",
+		"ja": "広州です"
+	},
+	"j6g22": {
+		"zh-cn": "深圳",
+		"en": "Shenzhen",
+		"ja": "深センです"
+	},
+	"i3v52": {
+		"zh-cn": "杭州",
+		"en": "Hangzhou",
+		"ja": "杭州です"
+	},
+	"elv92": {
+		"zh-cn": "南京",
+		"en": "Nanjing",
+		"ja": "南京です"
+	},
+	"hh4d2": {
+		"zh-cn": "成都",
+		"en": "Chengdu",
+		"ja": "成都です"
+	},
+	"pbh52": {
+		"zh-cn": "重庆",
+		"en": "Chongqing",
+		"ja": "重慶"
+	},
+	"nw162": {
+		"zh-cn": "西安",
+		"en": "Xi 'an",
+		"ja": "西安です"
+	},
+	"aexw3t4": {
+		"zh-cn": "体感温度",
+		"en": "Perceived temperature",
+		"ja": "体感温度"
+	},
+	"l2v6r3": {
+		"zh-cn": "近7天",
+		"en": "In the past 7 days",
+		"ja": "7日近くです"
+	},
+	"5w1y5i5": {
+		"zh-cn": "近24小时",
+		"en": "Nearly 24 hours",
+		"ja": "24時間近くです"
+	},
+	"2q6hvc8": {
+		"zh-cn": "暂无天气预报数据",
+		"en": "There is no weather forecast data for the time being",
+		"ja": "天気予報のデータはまだありません"
+	},
+	"1zdmta9": {
+		"zh-cn": "暂无逐小时天气数据",
+		"en": "Hourly weather data is not available for the time being",
+		"ja": "時間ごとの気象データはまだありません"
+	},
+	"8kurr76": {
+		"zh-cn": "搜索城市名称",
+		"en": "Search for the city name",
+		"ja": "都市名を検索します"
+	},
+	"dcv57g4": {
+		"zh-cn": "暂无数据",
+		"en": "There is no data for the time being.",
+		"ja": "仮無数の根拠です"
+	},
+	"qs5t2": {
+		"zh-cn": "风速",
+		"en": "Wind speed",
+		"ja": "風速です"
+	},
+	"qgar2": {
+		"zh-cn": "风向",
+		"en": "Wind direction",
+		"ja": "風向きです"
+	},
+	"i7ej2": {
+		"zh-cn": "未知",
+		"en": "Unknown",
+		"ja": "未知です"
+	},
+	"jbbb2": {
+		"zh-cn": "湿度",
+		"en": "Humidity",
+		"ja": "湿度です"
+	},
+	"e5we2": {
+		"zh-cn": "云量",
+		"en": "Cloud cover",
+		"ja": "雲量です"
+	},
+	"iubb2": {
+		"zh-cn": "气压",
+		"en": "Air pressure",
+		"ja": "気圧です"
+	},
+	"jk3pe3": {
+		"zh-cn": "能见度",
+		"en": "Visibility",
+		"ja": "可視性です"
+	},
+	"mjqjs3": {
+		"zh-cn": "降水量",
+		"en": "Precipitation",
+		"ja": "降水量です"
+	},
+	"dw2n2": {
+		"zh-cn": "今天",
+		"en": "today",
+		"ja": "今日です"
+	},
+	"f8a91h4": {
+		"zh-cn": "生活指数",
+		"en": "Life index",
+		"ja": "生活指数です"
+	},
+	"pbboin8": {
+		"zh-cn": "暂无生活指数数据",
+		"en": "There is no data on the living index for the time being",
+		"ja": "生活指数のデータはありません"
+	},
+	"jl2ta84": {
+		"zh-cn": "降雨概率",
+		"en": "Rainfall probability",
+		"ja": "降雨確率です"
+	},
+	"e6bqh1f": {
+		"zh-cn": "切换到24小时预报查看降雨概率",
+		"en": "Switch to the 24-hour forecast to check the probability of rainfall",
+		"ja": "24時間予報に切り替えて降雨確率を確認します"
+	},
+	"zvky18": {
+		"zh-cn": "24小时降雨概率",
+		"en": "24-hour rainfall probability",
+		"ja": "24時間降水確率です"
+	},
+	"dgxi784": {
+		"zh-cn": "时间: ",
+		"en": "Time:",
+		"ja": "時間です:"
+	}
+}
